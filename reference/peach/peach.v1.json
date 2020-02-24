@@ -1,0 +1,3157 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "title": "Peach",
+        "description": "## Welcome\n\nThis is a place to put general notes and extra information, for internal use.\n\nTo get started designing/documenting this API, select a version on the left. # Title\nNo Description"
+    },
+    "host": "v1.peachapi.com",
+    "basePath": "/",
+    "schemes": [
+        "https"
+    ],
+    "securityDefinitions": {
+        "Authorization": {
+            "name": "Authorization",
+            "type": "apiKey",
+            "in": "header"
+        }
+    },
+    "paths": {
+        "/activity": {
+            "get": {
+                "operationId": "GET_activity",
+                "tags": [
+                    "Activity"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "streamID": {
+                                            "type": "string"
+                                        },
+                                        "activityItems": {
+                                            "type": "array",
+                                            "items": {}
+                                        },
+                                        "unreadActivityItemCount": {
+                                            "type": "integer"
+                                        },
+                                        "lastRead": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "streamID": "123",
+                                    "activityItems": [],
+                                    "unreadActivityItemCount": 0,
+                                    "lastRead": 0
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/activity/isUnread": {
+            "get": {
+                "operationId": "GET_activity-isUnread",
+                "tags": [
+                    "Activity"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "isUnreadActivity": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "isUnreadActivity": false
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/activity/wave": {
+            "post": {
+                "operationId": "POST_activity-wave",
+                "tags": [
+                    "Activity"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "targetStreamId": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "type": "wave",
+                                "targetStreamId": "123"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comment": {
+            "post": {
+                "operationId": "POST_comment",
+                "tags": [
+                    "Comment"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "postId": {
+                                    "type": "string"
+                                },
+                                "body": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "postId": "123",
+                                "body": "Testing"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "authorStreamID": {
+                                            "type": "string"
+                                        },
+                                        "postID": {
+                                            "type": "string"
+                                        },
+                                        "body": {
+                                            "type": "string"
+                                        },
+                                        "author": {
+                                            "type": "object",
+                                            "properties": {
+                                                "bio": {
+                                                    "type": "string"
+                                                },
+                                                "isPublic": {
+                                                    "type": "boolean"
+                                                },
+                                                "posts": {
+                                                    "type": "null"
+                                                },
+                                                "unreadPostCount": {
+                                                    "type": "integer"
+                                                },
+                                                "lastRead": {
+                                                    "type": "integer"
+                                                },
+                                                "lastOnline": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "id": "123",
+                                    "authorStreamID": "123",
+                                    "postID": "123",
+                                    "body": "Testing",
+                                    "author": {
+                                        "bio": "",
+                                        "isPublic": false,
+                                        "posts": null,
+                                        "unreadPostCount": 0,
+                                        "lastRead": 0,
+                                        "lastOnline": 0
+                                    }
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/connections": {
+            "get": {
+                "operationId": "GET_connections",
+                "tags": [
+                    "Connections"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "connections": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "displayName": {
+                                                        "type": "string"
+                                                    },
+                                                    "bio": {
+                                                        "type": "string"
+                                                    },
+                                                    "isPublic": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "friendsSharing": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "youFollow": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "followsYou": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "posts": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string"
+                                                                },
+                                                                "message": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "text": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "type": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "commentCount": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "hasMoreComments": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "likeCount": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "hasMoreLikes": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "likedByMe": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "isUnread": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "createdTime": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "updatedTime": {
+                                                                    "type": "integer"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "unreadPostCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "lastRead": {
+                                                        "type": "integer"
+                                                    },
+                                                    "lastOnline": {
+                                                        "type": "integer"
+                                                    },
+                                                    "isFavorite": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "avatarSrc": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "inboundFriendRequests": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "stream": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "type": "string"
+                                                            },
+                                                            "displayName": {
+                                                                "type": "string"
+                                                            },
+                                                            "avatarSrc": {
+                                                                "type": "string"
+                                                            },
+                                                            "bio": {
+                                                                "type": "string"
+                                                            },
+                                                            "isPublic": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "posts": {
+                                                                "type": "array",
+                                                                "items": {}
+                                                            },
+                                                            "unreadPostCount": {
+                                                                "type": "integer"
+                                                            },
+                                                            "lastRead": {
+                                                                "type": "integer"
+                                                            },
+                                                            "lastOnline": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    },
+                                                    "createdTime": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "outboundFriendRequests": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "stream": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "type": "string"
+                                                            },
+                                                            "displayName": {
+                                                                "type": "string"
+                                                            },
+                                                            "bio": {
+                                                                "type": "string"
+                                                            },
+                                                            "isPublic": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "posts": {
+                                                                "type": "array",
+                                                                "items": {}
+                                                            },
+                                                            "unreadPostCount": {
+                                                                "type": "integer"
+                                                            },
+                                                            "lastRead": {
+                                                                "type": "integer"
+                                                            },
+                                                            "lastOnline": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    },
+                                                    "createdTime": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "requesterStream": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "displayName": {
+                                                    "type": "string"
+                                                },
+                                                "bio": {
+                                                    "type": "string"
+                                                },
+                                                "isPublic": {
+                                                    "type": "boolean"
+                                                },
+                                                "friendsSharing": {
+                                                    "type": "boolean"
+                                                },
+                                                "posts": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string"
+                                                            },
+                                                            "message": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "text": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "commentCount": {
+                                                                "type": "integer"
+                                                            },
+                                                            "hasMoreComments": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "likeCount": {
+                                                                "type": "integer"
+                                                            },
+                                                            "hasMoreLikes": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "likedByMe": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "isUnread": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "createdTime": {
+                                                                "type": "integer"
+                                                            },
+                                                            "updatedTime": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "unreadPostCount": {
+                                                    "type": "integer"
+                                                },
+                                                "lastRead": {
+                                                    "type": "integer"
+                                                },
+                                                "lastOnline": {
+                                                    "type": "integer"
+                                                },
+                                                "isFavorite": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "connections": [
+                                        {
+                                            "id": "123",
+                                            "name": "atif",
+                                            "displayName": "Atif",
+                                            "bio": "",
+                                            "isPublic": false,
+                                            "friendsSharing": true,
+                                            "youFollow": true,
+                                            "followsYou": true,
+                                            "posts": [
+                                                {
+                                                    "id": "123",
+                                                    "message": [
+                                                        {
+                                                            "text": "Howdy",
+                                                            "type": "text"
+                                                        }
+                                                    ],
+                                                    "commentCount": 0,
+                                                    "hasMoreComments": false,
+                                                    "likeCount": 0,
+                                                    "hasMoreLikes": false,
+                                                    "likedByMe": false,
+                                                    "isUnread": true,
+                                                    "createdTime": 1452929650,
+                                                    "updatedTime": 1452929650
+                                                }
+                                            ],
+                                            "unreadPostCount": 9,
+                                            "lastRead": 0,
+                                            "lastOnline": 1455329692,
+                                            "isFavorite": false
+                                        }
+                                    ],
+                                    "inboundFriendRequests": [
+                                        {
+                                            "id": "123",
+                                            "stream": {
+                                                "id": "123",
+                                                "name": "misia",
+                                                "displayName": "misia",
+                                                "avatarSrc": "http://s3.amazonaws.com/assets.peachapi.com/123.jpg",
+                                                "bio": "",
+                                                "isPublic": false,
+                                                "posts": [],
+                                                "unreadPostCount": 0,
+                                                "lastRead": 0,
+                                                "lastOnline": 0
+                                            },
+                                            "createdTime": 1455433587
+                                        }
+                                    ],
+                                    "outboundFriendRequests": [],
+                                    "requesterStream": {
+                                        "id": "123",
+                                        "name": "marc",
+                                        "displayName": "Marc",
+                                        "bio": "",
+                                        "isPublic": false,
+                                        "friendsSharing": true,
+                                        "posts": [
+                                            {
+                                                "id": "123",
+                                                "message": [
+                                                    {
+                                                        "text": "Hello",
+                                                        "type": "text"
+                                                    }
+                                                ],
+                                                "commentCount": 0,
+                                                "hasMoreComments": false,
+                                                "likeCount": 0,
+                                                "hasMoreLikes": false,
+                                                "likedByMe": false,
+                                                "isUnread": false,
+                                                "createdTime": 1452539565,
+                                                "updatedTime": 1452539565
+                                            }
+                                        ],
+                                        "unreadPostCount": 0,
+                                        "lastRead": 1455562715,
+                                        "lastOnline": 1455564539,
+                                        "isFavorite": false
+                                    }
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/connections/explore": {
+            "get": {
+                "operationId": "GET_connections-explore",
+                "tags": [
+                    "Connections"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "connections": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "displayName": {
+                                                        "type": "string"
+                                                    },
+                                                    "avatarSrc": {
+                                                        "type": "string"
+                                                    },
+                                                    "bio": {
+                                                        "type": "string"
+                                                    },
+                                                    "isPublic": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "posts": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string"
+                                                                },
+                                                                "message": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "text": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "type": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "height": {
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "src": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "width": {
+                                                                                "type": "integer"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "commentCount": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "hasMoreComments": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "likeCount": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "hasMoreLikes": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "likedByMe": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "isUnread": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "createdTime": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "updatedTime": {
+                                                                    "type": "integer"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "unreadPostCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "lastRead": {
+                                                        "type": "integer"
+                                                    },
+                                                    "lastOnline": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "connections": [
+                                        {
+                                            "id": "123",
+                                            "name": "confessions",
+                                            "displayName": "Confessions",
+                                            "avatarSrc": "http://s3.amazonaws.com/assets.peachapi.com/123.jpg",
+                                            "bio": "Confess 👉 http://peachconfessions.com",
+                                            "isPublic": true,
+                                            "posts": [
+                                                {
+                                                    "id": "123",
+                                                    "message": [
+                                                        {
+                                                            "text": "everyone is happy",
+                                                            "type": "text"
+                                                        }
+                                                    ],
+                                                    "commentCount": 1,
+                                                    "hasMoreComments": false,
+                                                    "likeCount": 12,
+                                                    "hasMoreLikes": false,
+                                                    "likedByMe": false,
+                                                    "isUnread": true,
+                                                    "createdTime": 1454563114,
+                                                    "updatedTime": 1454563114
+                                                }
+                                            ],
+                                            "unreadPostCount": 50,
+                                            "lastRead": 0,
+                                            "lastOnline": 0
+                                        }
+                                    ]
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/connections/requests/inbound": {
+            "get": {
+                "operationId": "GET_connections-requests-inbound",
+                "tags": [
+                    "Connections"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "inboundFriendRequests": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "stream": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "type": "string"
+                                                            },
+                                                            "displayName": {
+                                                                "type": "string"
+                                                            },
+                                                            "avatarSrc": {
+                                                                "type": "string"
+                                                            },
+                                                            "bio": {
+                                                                "type": "string"
+                                                            },
+                                                            "isPublic": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "friendsSharing": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "posts": {
+                                                                "type": "array",
+                                                                "items": {}
+                                                            },
+                                                            "unreadPostCount": {
+                                                                "type": "integer"
+                                                            },
+                                                            "lastRead": {
+                                                                "type": "integer"
+                                                            },
+                                                            "lastOnline": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    },
+                                                    "createdTime": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "inboundFriendRequests": [
+                                        {
+                                            "id": "29cd5eef1b2341b1b0c3860356541696",
+                                            "stream": {
+                                                "id": "17f1781ebf2e484b8f50f79bb052537c",
+                                                "name": "misia",
+                                                "displayName": "misia",
+                                                "avatarSrc": "http://s3.amazonaws.com/assets.peachapi.com/123.jpg",
+                                                "bio": "",
+                                                "isPublic": false,
+                                                "friendsSharing": true,
+                                                "posts": [],
+                                                "unreadPostCount": 0,
+                                                "lastRead": 0,
+                                                "lastOnline": 0
+                                            },
+                                            "createdTime": 1455433587
+                                        }
+                                    ]
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/friend-request/{param1}/accept": {
+            "parameters": [
+                {
+                    "name": "param1",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "post": {
+                "operationId": "POST_friend-request-param1-accept",
+                "tags": [
+                    "Friend Requests"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/like": {
+            "post": {
+                "operationId": "POST_like",
+                "tags": [
+                    "Likes"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "postId": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "postId": "123"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "authorStreamID": {
+                                            "type": "string"
+                                        },
+                                        "postID": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "id": "123",
+                                    "authorStreamID": "123",
+                                    "postID": "123"
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/like/postID/{param1}": {
+            "parameters": [
+                {
+                    "name": "param1",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "delete": {
+                "operationId": "DELETE_like-postID-param1",
+                "tags": [
+                    "Likes"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/post": {
+            "post": {
+                "operationId": "POST_post",
+                "tags": [
+                    "Post"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string"
+                                            },
+                                            "text": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "example": {
+                                "message": [
+                                    {
+                                        "type": "text",
+                                        "text": "Foo two"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "text": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "commentCount": {
+                                            "type": "integer"
+                                        },
+                                        "hasMoreComments": {
+                                            "type": "boolean"
+                                        },
+                                        "likeCount": {
+                                            "type": "integer"
+                                        },
+                                        "hasMoreLikes": {
+                                            "type": "boolean"
+                                        },
+                                        "likedByMe": {
+                                            "type": "boolean"
+                                        },
+                                        "isUnread": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "id": "123",
+                                    "message": [
+                                        {
+                                            "text": "Foo two",
+                                            "type": "text"
+                                        }
+                                    ],
+                                    "commentCount": 0,
+                                    "hasMoreComments": false,
+                                    "likeCount": 0,
+                                    "hasMoreLikes": false,
+                                    "likedByMe": false,
+                                    "isUnread": false
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/precheck/create/user": {
+            "post": {
+                "operationId": "POST_precheck-create-user",
+                "tags": [
+                    "Precheck"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "email": "xxx@xxx.com",
+                                "password": "xxx"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object"
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {},
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/precheck/create/stream": {
+            "post": {
+                "operationId": "POST_precheck-create-stream",
+                "tags": [
+                    "Precheck"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "name": "marcsl"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object"
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {},
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/device": {
+            "post": {
+                "operationId": "POST_stream-device",
+                "tags": [
+                    "Stream"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "applicationId": {
+                                    "type": "string"
+                                },
+                                "deviceId": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "applicationId": "cool.peach",
+                                "deviceId": "123"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/id/{param1}/read": {
+            "parameters": [
+                {
+                    "name": "param1",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "put": {
+                "operationId": "PUT_stream-id-param1-read",
+                "tags": [
+                    "Stream"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/bio": {
+            "put": {
+                "operationId": "PUT_stream-bio",
+                "tags": [
+                    "Stream"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "bio": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "bio": "Hi I'm Marc"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/id/{param1}": {
+            "parameters": [
+                {
+                    "name": "param1",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "operationId": "GET_stream-id-param1",
+                "tags": [
+                    "Stream"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "displayName": {
+                                            "type": "string"
+                                        },
+                                        "bio": {
+                                            "type": "string"
+                                        },
+                                        "isPublic": {
+                                            "type": "boolean"
+                                        },
+                                        "friendsSharing": {
+                                            "type": "boolean"
+                                        },
+                                        "youFollow": {
+                                            "type": "boolean"
+                                        },
+                                        "followsYou": {
+                                            "type": "boolean"
+                                        },
+                                        "posts": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "streamID": {
+                                                        "type": "string"
+                                                    },
+                                                    "message": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "text": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "commentCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "hasMoreComments": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "likeCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "hasMoreLikes": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "likedByMe": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "isUnread": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "createdTime": {
+                                                        "type": "integer"
+                                                    },
+                                                    "updatedTime": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "unreadPostCount": {
+                                            "type": "integer"
+                                        },
+                                        "lastRead": {
+                                            "type": "integer"
+                                        },
+                                        "lastOnline": {
+                                            "type": "integer"
+                                        },
+                                        "isFavorite": {
+                                            "type": "boolean"
+                                        },
+                                        "avatarSrc": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "id": "123",
+                                    "name": "marc",
+                                    "displayName": "Marc",
+                                    "bio": "",
+                                    "isPublic": false,
+                                    "friendsSharing": true,
+                                    "youFollow": false,
+                                    "followsYou": false,
+                                    "posts": [
+                                        {
+                                            "id": "123",
+                                            "streamID": "123",
+                                            "message": [
+                                                {
+                                                    "text": "Hello",
+                                                    "type": "text"
+                                                }
+                                            ],
+                                            "commentCount": 0,
+                                            "hasMoreComments": false,
+                                            "likeCount": 0,
+                                            "hasMoreLikes": false,
+                                            "likedByMe": false,
+                                            "isUnread": false,
+                                            "createdTime": 1452539565,
+                                            "updatedTime": 1452539565
+                                        }
+                                    ],
+                                    "unreadPostCount": 0,
+                                    "lastRead": 1455562715,
+                                    "lastOnline": 1455564539,
+                                    "isFavorite": false
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/displayName": {
+            "put": {
+                "operationId": "PUT_stream-displayName",
+                "tags": [
+                    "Stream"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "displayName": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "displayName": "Marc2"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/n/{username}/connections": {
+            "parameters": [
+                {
+                    "name": "username",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "operationId": "GET_stream-n-username-connections",
+                "tags": [
+                    "Stream"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "connections": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "displayName": {
+                                                        "type": "string"
+                                                    },
+                                                    "bio": {
+                                                        "type": "string"
+                                                    },
+                                                    "isPublic": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "friendsSharing": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "youFollow": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "followsYou": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "posts": {
+                                                        "type": "null"
+                                                    },
+                                                    "unreadPostCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "lastRead": {
+                                                        "type": "integer"
+                                                    },
+                                                    "lastOnline": {
+                                                        "type": "integer"
+                                                    },
+                                                    "avatarSrc": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "connections": [
+                                        {
+                                            "id": "123",
+                                            "name": "atif",
+                                            "displayName": "Atif",
+                                            "bio": "",
+                                            "isPublic": false,
+                                            "friendsSharing": true,
+                                            "youFollow": true,
+                                            "followsYou": true,
+                                            "posts": null,
+                                            "unreadPostCount": 0,
+                                            "lastRead": 0,
+                                            "lastOnline": 0
+                                        }
+                                    ]
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/n/{username}": {
+            "parameters": [
+                {
+                    "name": "username",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "operationId": "GET_stream-n-username",
+                "tags": [
+                    "Stream"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "displayName": {
+                                            "type": "string"
+                                        },
+                                        "avatarSrc": {
+                                            "type": "string"
+                                        },
+                                        "bio": {
+                                            "type": "string"
+                                        },
+                                        "isPublic": {
+                                            "type": "boolean"
+                                        },
+                                        "friendsSharing": {
+                                            "type": "boolean"
+                                        },
+                                        "youFollow": {
+                                            "type": "boolean"
+                                        },
+                                        "followsYou": {
+                                            "type": "boolean"
+                                        },
+                                        "posts": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "streamID": {
+                                                        "type": "string"
+                                                    },
+                                                    "message": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "text": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "commentCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "hasMoreComments": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "likeCount": {
+                                                        "type": "integer"
+                                                    },
+                                                    "hasMoreLikes": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "likedByMe": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "isUnread": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "createdTime": {
+                                                        "type": "integer"
+                                                    },
+                                                    "updatedTime": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "unreadPostCount": {
+                                            "type": "integer"
+                                        },
+                                        "lastRead": {
+                                            "type": "integer"
+                                        },
+                                        "lastOnline": {
+                                            "type": "integer"
+                                        },
+                                        "isFavorite": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "id": "123",
+                                    "name": "misia",
+                                    "displayName": "misia",
+                                    "avatarSrc": "http://s3.amazonaws.com/assets.peachapi.com/123.jpg",
+                                    "bio": "",
+                                    "isPublic": false,
+                                    "friendsSharing": true,
+                                    "youFollow": true,
+                                    "followsYou": true,
+                                    "posts": [
+                                        {
+                                            "id": "123",
+                                            "streamID": "123",
+                                            "message": [
+                                                {
+                                                    "text": "Hello",
+                                                    "type": "text"
+                                                }
+                                            ],
+                                            "commentCount": 0,
+                                            "hasMoreComments": false,
+                                            "likeCount": 0,
+                                            "hasMoreLikes": false,
+                                            "likedByMe": false,
+                                            "isUnread": true,
+                                            "createdTime": 1455433481,
+                                            "updatedTime": 1455433481
+                                        }
+                                    ],
+                                    "unreadPostCount": 0,
+                                    "lastRead": 0,
+                                    "lastOnline": 1455433703,
+                                    "isFavorite": false
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/id/{param1}/connection": {
+            "parameters": [
+                {
+                    "name": "param1",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "delete": {
+                "operationId": "DELETE_stream-id-param1-connection",
+                "tags": [
+                    "Stream"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/n/{username}/connection": {
+            "parameters": [
+                {
+                    "name": "username",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "post": {
+                "operationId": "POST_stream-n-username-connection",
+                "tags": [
+                    "Stream"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "stream": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "displayName": {
+                                                    "type": "string"
+                                                },
+                                                "bio": {
+                                                    "type": "string"
+                                                },
+                                                "isPublic": {
+                                                    "type": "boolean"
+                                                },
+                                                "friendsSharing": {
+                                                    "type": "boolean"
+                                                },
+                                                "youFollow": {
+                                                    "type": "boolean"
+                                                },
+                                                "followsYou": {
+                                                    "type": "boolean"
+                                                },
+                                                "posts": {
+                                                    "type": "null"
+                                                },
+                                                "unreadPostCount": {
+                                                    "type": "integer"
+                                                },
+                                                "lastRead": {
+                                                    "type": "integer"
+                                                },
+                                                "lastOnline": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "status": "pending",
+                                    "id": "123",
+                                    "stream": {
+                                        "id": "123",
+                                        "name": "atif",
+                                        "displayName": "Atif",
+                                        "bio": "",
+                                        "isPublic": false,
+                                        "friendsSharing": true,
+                                        "youFollow": false,
+                                        "followsYou": false,
+                                        "posts": null,
+                                        "unreadPostCount": 0,
+                                        "lastRead": 0,
+                                        "lastOnline": 0
+                                    }
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/visibility": {
+            "get": {
+                "operationId": "GET_stream-visibility",
+                "tags": [
+                    "Stream"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "friendsOnly": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "friendsOnly": false
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "POST_stream-visibility",
+                "tags": [
+                    "Stream"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "friendsOnly": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "example": {
+                                "friendsOnly": true
+                            }
+                        }
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/device/{param1}": {
+            "parameters": [
+                {
+                    "name": "param1",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "delete": {
+                "operationId": "DELETE_stream-device-param1",
+                "tags": [
+                    "Stream"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stream/friends/auto": {
+            "get": {
+                "operationId": "GET_stream-friends-auto",
+                "tags": [
+                    "Stream"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "auto": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "auto": false
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "POST_stream-friends-auto",
+                "tags": [
+                    "Stream"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "auto": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "example": {
+                                "auto": true
+                            }
+                        }
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "operationId": "POST_login",
+                "tags": [
+                    "User"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "email": "marc",
+                                "password": "xxx"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "streams": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "token": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                },
+                                "error": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Code": {
+                                            "type": "integer"
+                                        },
+                                        "Message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "token": "123",
+                                    "streams": [
+                                        {
+                                            "id": "123",
+                                            "token": "123"
+                                        }
+                                    ]
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "operationId": "POST_register",
+                "tags": [
+                    "User"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "email": "xxx@stoplight.io",
+                                "name": "marc",
+                                "password": "xxx"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "streams": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "token": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "token": "123",
+                                    "streams": [
+                                        {
+                                            "id": "123",
+                                            "token": "123"
+                                        }
+                                    ]
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/hasVerifiedPhone": {
+            "get": {
+                "operationId": "GET_user-hasVerifiedPhone",
+                "tags": [
+                    "User"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "verified": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": {
+                                    "verified": true
+                                },
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/lookupAddressBook": {
+            "post": {
+                "operationId": "POST_user-lookupAddressBook",
+                "tags": [
+                    "User"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "entries": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "phones": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "tag": {
+                                                "type": "string"
+                                            },
+                                            "emails": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "example": {
+                                "entries": [
+                                    {
+                                        "phones": [],
+                                        "name": "Eva Jane",
+                                        "tag": "111",
+                                        "emails": [
+                                            "foo@gmail.com"
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "streamID": {
+                                                "type": "string"
+                                            },
+                                            "userID": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "displayName": {
+                                                "type": "string"
+                                            },
+                                            "avatarSrc": {
+                                                "type": "string"
+                                            },
+                                            "created": {
+                                                "type": "integer"
+                                            },
+                                            "youFollow": {
+                                                "type": "boolean"
+                                            },
+                                            "followsYou": {
+                                                "type": "boolean"
+                                            },
+                                            "tag": {
+                                                "type": "string"
+                                            },
+                                            "youRequested": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                },
+                                "success": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "data": [
+                                    {
+                                        "streamID": "123",
+                                        "userID": "123",
+                                        "name": "atif",
+                                        "displayName": "Atif",
+                                        "avatarSrc": "",
+                                        "created": 1452929596,
+                                        "youFollow": false,
+                                        "followsYou": false,
+                                        "tag": "1381",
+                                        "youRequested": false
+                                    }
+                                ],
+                                "success": 1
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "responses": {
+        "trait:standardErrors:401": {
+            "description": "",
+            "schema": {
+                "type": "object"
+            }
+        },
+        "trait:standardErrors:404": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "foo": {
+                        "type": "string"
+                    },
+                    "bar": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "shared-user": {
+            "title": "Shared User",
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string"
+                },
+                "": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
