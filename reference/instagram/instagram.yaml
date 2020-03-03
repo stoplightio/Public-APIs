@@ -51,12 +51,12 @@ securityDefinitions:
     authorizationUrl: 'https://instagram.com/oauth/authorize/'
     flow: implicit
     scopes:
-      basic: to read a user's profile info and media (granted by default)
-      comments: to post and delete comments on a user's behalf
+      basic: "to read a user's profile info and media (granted by default)"
+      comments: "to post and delete comments on a user's behalf"
       follower_list: to read the list of followers and followed-by users
-      likes: to like and unlike media on a user's behalf
+      likes: "to like and unlike media on a user's behalf"
       public_content: to read any public profile info and media on a user’s behalf
-      relationships: to follow and unfollow accounts on a user's behalf
+      relationships: "to follow and unfollow accounts on a user's behalf"
     type: oauth2
 tags:
   - description: Get information about users
@@ -501,7 +501,7 @@ paths:
     get:
       description: Search for tags by name.
       parameters:
-        - description: 'A valid tag name without a leading \#. (eg. snowy, nofilter)'
+        - description: "A valid tag name without a leading \\#. (eg. snowy, nofilter)"
           in: query
           name: q
           required: true
@@ -635,7 +635,7 @@ paths:
         - api_key: []
         - instagram_auth:
             - basic
-      summary: See the authenticated user's feed.
+      summary: "See the authenticated user's feed."
       tags:
         - users
   /users/self/media/liked:
@@ -669,17 +669,17 @@ paths:
         - users
   /users/self/requested-by:
     get:
-      description: List the users who have requested this user's permission to follow.
+      description: "List the users who have requested this user's permission to follow."
       responses:
         '200':
-          description: List of users who have requested this user's permission to follow.
+          description: "List of users who have requested this user's permission to follow."
           schema:
             $ref: '#/definitions/UsersInfoResponse'
       security:
         - api_key: []
         - instagram_auth:
             - follower_list
-      summary: List the users who have requested this user's permission to follow.
+      summary: "List the users who have requested this user's permission to follow."
       tags:
         - relationships
   '/users/{user-id}':
@@ -971,7 +971,7 @@ definitions:
   LocationInfo:
     properties:
       id:
-        description: ID of this location (in some responses it has a type of 'integer')
+        description: "ID of this location (in some responses it has a type of 'integer')"
         type: string
       latitude:
         description: Location latitude
@@ -1061,8 +1061,10 @@ definitions:
         type: array
       videos:
         $ref: '#/definitions/VideosData'
-        description: 'Videos data in different resolutions, applied for ''video'' type'
+        description: "Videos data in different resolutions, applied for 'video' type"
     type: object
+    title: Media Entry
+    description: ''
   MediaEntryResponse:
     properties:
       data:
@@ -1166,7 +1168,7 @@ definitions:
   StatusResponse:
     properties:
       data:
-        description: No data - 'null'
+        description: "No data - 'null'"
         type: string
       meta:
         $ref: '#/definitions/MetaData'
